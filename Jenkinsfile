@@ -1,7 +1,7 @@
 pipline{
   agent {
     docker {
-      image '10.129.0.9:4242/edu-11-homework-buider'
+      image '10.129.0.9:4242/edu-11-homework-builder'
     }
   }
 
@@ -18,7 +18,7 @@ pipline{
     }
     stage ('build container') {
       steps {
-        sh 'docker build wwbel/boxfuse'
+        sh 'docker build -t wwbel/boxfuse .'
       }
     }
     stage ('push container') {
