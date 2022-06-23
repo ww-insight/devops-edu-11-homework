@@ -32,6 +32,7 @@ pipeline{
     }
     stage ('up container') {
       steps{
+        agent any
         sshagent(['583788ca-55d0-48eb-9a55-5f5335c473a7']) {
           sh '''
                 [ -d ~/.ssh ] || mkdir ~/.ssh && chmod 0700 ~/.ssh
