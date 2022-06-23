@@ -2,6 +2,7 @@ pipeline{
   agent {
     docker {
       image 'builder'
+      args '-v /var/run/docker.sock:/var/run/docker.sock'
     }
   }
 
