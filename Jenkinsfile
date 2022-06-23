@@ -22,17 +22,9 @@ pipeline{
         sh 'docker build -t wwbel/boxfuse .'
       }
     }
-    stage('test') {
-      steps {
-        sh 'whoami'
-        sh 'pwd'
-      }
-    }
     stage ('push container') {
       steps {
-        withCredentials([usernamePassword(credentialsId: 'docker_hub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
-          sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
-        }
+
         sh 'docker push wwbel/boxfuse'
       }
     }
