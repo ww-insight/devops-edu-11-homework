@@ -2,7 +2,7 @@ pipeline{
   agent {
     docker {
       image 'builder'
-      args '-v /var/run/docker.sock:/var/run/docker.sock -v /root/.docker/config.json:/root/.docker/config.json'
+      args '-v /var/run/docker.sock:/var/run/docker.sock'
     }
   }
 
@@ -24,6 +24,7 @@ pipeline{
     }
     stage ('push container') {
       steps {
+        sh 'docker login'
         sh 'docker push wwbel/boxfuse'
       }
     }
