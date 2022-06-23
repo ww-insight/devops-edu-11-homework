@@ -4,4 +4,3 @@ RUN apt install default-jdk -y
 RUN apt install maven -y
 RUN apt install git -y
 RUN apt install docker.io -y
-COPY config.json /root/.docker/config.json
