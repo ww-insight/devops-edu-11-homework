@@ -2,7 +2,7 @@ pipeline{
   agent {
     docker {
       image 'builder'
-      args '-v /var/run/docker.sock:/var/run/docker.sock'
+      args '-v /var/run/docker.sock:/var/run/docker.sock --user root'
     }
   }
 
@@ -31,8 +31,8 @@ pipeline{
       steps{
         sshagent(['34abdab6-497c-42e3-b62e-989b4b369084']) {
           sh '''
-                [ -d /.ssh ] || mkdir /.ssh && chmod 0700 /.ssh
-                ssh-keyscan -t rsa,dsa 10.129.0.4 >> /.ssh/known_hosts
+                [ -d ~/.ssh ] || mkdir ~/.ssh && chmod 0700 ~/.ssh
+                ssh-keyscan -t rsa,dsa 10.129.0.4 >> ~/.ssh/known_hosts
                 ssh root@10.129.0.4 'docker ps --filter "ancestor=wwbel/boxfuse" -q | xargs docker stop && docker pull wwbel/boxfuse && docker run -d -p 8080:8080 wwbel/boxfuse'
           '''
 
