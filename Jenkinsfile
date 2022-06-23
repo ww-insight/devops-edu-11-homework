@@ -1,7 +1,7 @@
 pipeline{
   agent {
     docker {
-      image '10.129.0.9:4242/edu-11-homework-builder'
+      image 'builder'
     }
   }
 
