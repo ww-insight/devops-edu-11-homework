@@ -25,7 +25,7 @@ pipeline{
     stage ('push container') {
       steps {
 
-        sh 'docker login'
+
         sh 'docker push wwbel/boxfuse'
       }
     }
