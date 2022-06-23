@@ -2,7 +2,7 @@ pipeline{
   agent {
     docker {
       image 'builder'
-      args '-v /var/run/docker.sock:/var/run/docker.sock'
+      args '-v /var/run/docker.sock:/var/run/docker.sock -v ~/.docker/config.json:~/.docker/config.json'
     }
   }
 
