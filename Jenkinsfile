@@ -27,6 +27,11 @@ pipeline{
         sh 'docker push wwbel/boxfuse'
       }
     }
+    stage ('up container') {
+      steps{
+        sh 'ssh root@10.129.0.4 \'docker ps --filter "ancestor=wwbel/boxfuse" -q | xargs docker stop && docker pull wwbel/boxfuse && docker run -d -p 8080:8080 wwbel/boxfuse\''
+      }
+    }
   }
 
 }
