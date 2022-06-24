@@ -37,7 +37,7 @@ pipeline{
           sh '''
                 [ -d ~/.ssh ] || mkdir ~/.ssh && chmod 0700 ~/.ssh
                 ssh-keyscan -t rsa,dsa 10.129.0.4 >> ~/.ssh/known_hosts
-                ssh root@10.129.0.4 'docker ps --filter "ancestor=wwbel/boxfuse" -q | xargs docker stop && docker pull wwbel/boxfuse && docker run -d -p 8080:8080 wwbel/boxfuse'
+                ssh root@10.129.0.4 'docker ps --filter "ancestor=wwbel/boxfuse" -q | xargs docker stop & docker pull wwbel/boxfuse && docker run -d -p 8080:8080 wwbel/boxfuse'
           '''
 
         }
